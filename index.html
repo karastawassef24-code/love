@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loveflix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <svg class="icon-sprite" aria-hidden="true">
+      <symbol id="icon-home" viewBox="0 0 24 24">
+        <path d="M3 11.5 12 4l9 7.5" />
+        <path d="M5.5 10.5V20h13v-9.5" />
+        <path d="M9.5 20v-5h5v5" />
+      </symbol>
+      <symbol id="icon-search" viewBox="0 0 24 24">
+        <circle cx="10.5" cy="10.5" r="6.5" />
+        <path d="m15.5 15.5 5 5" />
+      </symbol>
+      <symbol id="icon-heart" viewBox="0 0 24 24">
+        <path d="M20.5 5.8c-1.9-2-5-2-6.9 0L12 7.4l-1.6-1.6c-1.9-2-5-2-6.9 0s-2 5.2 0 7.2L12 21l8.5-8c2-2 1.9-5.2 0-7.2Z" />
+      </symbol>
+      <symbol id="icon-image" viewBox="0 0 24 24">
+        <rect x="4" y="5" width="16" height="14" rx="2" />
+        <path d="m4 16 4.5-4.5 4 4 2-2L20 19" />
+        <circle cx="15.5" cy="9.5" r="1.5" />
+      </symbol>
+      <symbol id="icon-profiles" viewBox="0 0 24 24">
+        <circle cx="9" cy="8" r="3.5" />
+        <path d="M3.5 20c.7-3.2 2.8-5 5.5-5s4.8 1.8 5.5 5" />
+        <circle cx="17" cy="9.5" r="2.5" />
+        <path d="M15.5 15.5c2.5.2 4.2 1.8 5 4.5" />
+      </symbol>
+    </svg>
+    <main id="app">
+      <section class="password-screen" id="passwordScreen" aria-label="Password screen">
+        <form class="password-card" id="passwordForm">
+          <p class="eyebrow">One little secret first</p>
+          <h1>Enter our date</h1>
+          <p>Hint: the day we became together, written as DDMMYY.</p>
+          <input id="passwordInput" type="password" inputmode="numeric" autocomplete="off" aria-label="Password" />
+          <p class="error is-hidden" id="passwordError">Almost, my love. Try our special date.</p>
+          <button class="primary-button" type="submit">Unlock</button>
+        </form>
+      </section>
+
+      <section class="profile-screen is-hidden" id="profileScreen" aria-labelledby="profileTitle">
+        <div class="brand">LOVEFLIX</div>
+        <h1 id="profileTitle">Who's watching?</h1>
+        <div class="profiles" id="profiles"></div>
+        <button class="outline-button" type="button">June 20, our first "I love you"</button>
+      </section>
+
+      <section class="home-screen is-hidden" id="homeScreen" aria-label="Album">
+        <aside class="rail" aria-label="Navigation">
+          <button class="rail-button active" type="button" aria-label="Home" title="Home">
+            <svg class="icon"><use href="#icon-home"></use></svg>
+          </button>
+          <button class="rail-button" type="button" aria-label="Search" title="Search">
+            <svg class="icon"><use href="#icon-search"></use></svg>
+          </button>
+          <button class="rail-button" type="button" aria-label="Love" title="Love">
+            <svg class="icon"><use href="#icon-heart"></use></svg>
+          </button>
+          <button class="rail-button" type="button" aria-label="Moments" title="Moments">
+            <svg class="icon"><use href="#icon-image"></use></svg>
+          </button>
+          <button class="rail-button" type="button" aria-label="Back to profiles" title="Back to profiles" id="backProfiles">
+            <svg class="icon"><use href="#icon-profiles"></use></svg>
+          </button>
+        </aside>
+
+        <section class="hero">
+          <video id="heroVideo" class="hero-video" muted autoplay loop playsinline></video>
+          <div class="hero-fallback" id="heroFallback"></div>
+          <div class="hero-shade"></div>
+          <div class="hero-content">
+            <div class="series-label"><span>N</span> SERIES</div>
+            <h2 id="albumTitle"></h2>
+            <div class="ranking"><span>TOP 10</span> #1 in My Heart Today</div>
+            <p id="albumDescription"></p>
+            <div class="hero-actions">
+              <button class="primary-button" type="button" id="playHero">Play</button>
+              <button class="soft-button" type="button" id="openFirst">More love</button>
+            </div>
+          </div>
+          <div class="rating">LOVE-20</div>
+        </section>
+
+        <section class="rows" id="rows"></section>
+      </section>
+    </main>
+
+    <section class="viewer is-hidden" id="viewer" aria-label="Media viewer" role="dialog" aria-modal="true">
+      <button class="viewer-close" type="button" id="closeViewer" aria-label="Close">X</button>
+      <button class="viewer-nav viewer-prev" type="button" id="prevMedia" aria-label="Previous">&lt;</button>
+      <div class="viewer-card">
+        <div class="viewer-media-shell">
+          <img id="viewerImage" alt="" />
+          <video id="viewerVideo" controls playsinline></video>
+        </div>
+        <article class="viewer-copy">
+          <p class="viewer-count" id="viewerCount"></p>
+          <h3 id="viewerTitle"></h3>
+          <p id="viewerMessage"></p>
+        </article>
+      </div>
+      <button class="viewer-nav viewer-next" type="button" id="nextMedia" aria-label="Next">&gt;</button>
+    </section>
+
+    <audio id="backgroundAudio" preload="auto"></audio>
+    <script src="embedded-media.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
